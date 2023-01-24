@@ -1,0 +1,44 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ produit.title }}{% endblock %}
+
+{% block body %}
+    
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <h1>{{ produit.title }}</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4 offset-1">
+            {% if produit.image %}
+                <img src="{{ asset('img/' ~ produit.image) }}" alt="image du produit {{ produit.title }}" class="card-img-top p-3">
+            {% else %}
+                <img src="{{ asset('img/default.jpg') }}" alt="image par défaut" class="card-img-top p-3">
+            {% endif %}
+        </div>
+        <div class="col-4 offset-2">
+            <h2>{{ produit.title|upper }}</h2>
+            <p>{{ produit.description }}</p>
+            <hr>
+            <p>Ville : {{ produit.city }} ({{ produit.postalCode }}</p>
+            <p>Prix : {{ produit.price|number_format(2, ',', ' ') }} €</p>
+            <hr>
+            <h2>Réservation</h2>
+            {% if produit.reservationText %}
+                <p class="text-danger">Réservé</p>
+            {% else %}
+                {{ form_start(formulaire) }}
+                    {{ form_row(formulaire.reservationText, {
+                        'label': 'Texte de réservation'
+                    }) }}
+                    <div class="text-end">
+                        <button class="btn btn-success">Réserver</button>
+                    </div>
+                {{ form_end(formulaire) }}
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

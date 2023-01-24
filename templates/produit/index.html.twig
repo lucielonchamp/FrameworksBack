@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}produits{% endblock %}
+
+{% block body %}
+
+    <div class="row my-5">
+        <div class="col-12 text-center">
+            <h1>Produits</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for produit in produits %}
+            <div class="col-4 p-3">
+                <div class="card">
+                    {% if produit.reservationText %}
+                        <span class="badge rounded-pill text-bg-danger py-2 px-3">Réservé</span>
+                    {% endif %}
+                    {% if produit.image %}
+                        <img src="{{ asset('img/' ~ produit.image) }}" alt="image du produit {{ produit.title }}" class="card-img-top p-3">
+                    {% else %}
+                        <img src="{{ asset('img/default.jpg') }}" alt="image par défaut" class="card-img-top p-3">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ produit.title|upper }}</h5>
+                        <p class="card-text">{{ produit.description|u.truncate(80, '...', false) }}</p>
+                        <p class="card-text text-center">{{ produit.price|number_format(2, ',', ' ') }} €</p>
+                        <p class="text-center mb-0">
+                            <a href="{{ path('produit_detail', {'id': produit.id}) }}"= class="btn btn-{{ produit.reservationText ? 'outline-danger disabled' : 'primary' }}">Détails</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
