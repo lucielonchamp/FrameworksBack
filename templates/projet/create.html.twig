@@ -1,0 +1,36 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nouvelle catégories
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="mb-5">Créer une catégorie</h1>
+	{# J'utilise la fonction form pour afficher la view formulaire stockée sous la variable categoryForm dans le categoryController #}
+
+	{# {{ form(categoryForm) }} = form entier sans modification du thème #}
+
+	{# reset local d'un form, passe au dessus du theme global dans twig.yaml #}
+	{{ form_start(projetForm) }}
+		<div class="col-8"> {{ form_row(projetForm.img)}}
+	</div>
+	<div class="row">
+		<div class="col-4">
+			{{ form_row(projetForm.titre)}}
+		</div>
+
+		<div class="col-12">
+			{{ form_row(projetForm.description)}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-8 offset-2 text-end">
+			<a href="{{ path('admin_projets') }}" class="btn btn-outline-danger me-3">Annuler</a>
+			<button class="btn btn-success">Créer</button>
+		</div>
+	</div>
+	{{form_end(projetForm)}}
+
+
+{% endblock %}

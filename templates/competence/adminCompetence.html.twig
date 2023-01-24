@@ -1,0 +1,55 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}
+	Mes projets
+{% endblock %}
+
+
+{% block body %}
+	<h1>Liste des compétences</h1>
+	{# Tableau des projets #}
+	<table class="table table-hover table-sm align-middle">
+		<thead>
+			<tr>
+
+				<th>Img</th>
+				<th>Titre</th>
+				<th>Catégorie</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for competence in competences %}
+				<tr>
+
+					<td class="text-start">
+						<img src="{{ asset('img/competence/' ~ competence.img) }}" alt="image du projet {{ competence.nom }}" class="pe-3">
+
+					</td>
+					<td>
+						{{ competence.nom }}
+					</td>
+					<td>{{ competence.categorie }}</td>
+					<td>
+						<a href="{{ path('competence_update', {'id': competence.id}) }}" class="me-3">
+							<i class="bi bi-pencil-square text-primary"></i>
+						</a>
+						<a href="{{ path('competence_delete', {'id': competence.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">
+							<i class="bi bi-trash3 text-danger"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="2">
+						Aucune compétence trouvée !
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="text-end mt-4">
+		<a href="{{ path('competence_create') }}" class="btn btn-success">Ajouter un projet</a>
+
+	</div>
+{% endblock %}

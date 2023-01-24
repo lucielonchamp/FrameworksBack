@@ -1,0 +1,45 @@
+/* **************************************** MAIN **************************************** */
+
+    main {
+        padding-top: 78.4px;
+        min-height: calc(100vh - 54px);
+    }
+
+    nav {
+        min-height: calc(100vh - 78.4px - 54px);
+    }
+
+   @media screen and (max-width: 1116px){
+    main {
+        padding-top: 70px;
+        min-height: calc(100vh - 54px);
+    }
+
+    nav {
+        min-height: calc(100vh - 70px - 54px);
+    }
+   }
+
+        nav ul li a:hover > i {
+            color: #212529;
+        }
+    
+    table img {
+        width: 50px;
+        aspect-ratio: 1/1;
+        object-fit: contain;
+    }
+ol, ul {
+    padding-left: 0rem !important;
+}
+li {
+    display: flex;
+    justify-content: space-around !important;
+}
+
+/* **************************************** FOOTER **************************************** */
+
+    footer p {
+        font-size: 0.75em;
+       
+    }

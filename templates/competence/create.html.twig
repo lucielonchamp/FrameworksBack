@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Nouvelle compétence
+{% endblock %}
+
+{% block body %}
+
+	<h1 class="mb-5">Créer une compétence</h1>
+	{# J'utilise la fonction form pour afficher la view formulaire stockée sous la variable categoryForm dans le categoryController #}
+
+	{# {{ form(categoryForm) }} = form entier sans modification du thème #}
+
+	{# reset local d'un form, passe au dessus du theme global dans twig.yaml #}
+	{{ form_start(competenceForm) }}
+		<div class="row"> <div class="col-4">
+			{{ form_row(competenceForm.img)}}
+		</div>
+		<div class="col-8">
+			{{ form_row(competenceForm.nom)}}
+		</div>
+		<div class="col-12">
+			{{ form_row(competenceForm.categorie)}}
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-8 offset-2 text-end">
+			<a href="{{ path('admin_competences') }}" class="btn btn-outline-danger me-3">Annuler</a>
+			<button class="btn btn-success">Créer</button>
+		</div>
+	</div>
+	{{form_end(competenceForm)}}
+
+
+{% endblock %}

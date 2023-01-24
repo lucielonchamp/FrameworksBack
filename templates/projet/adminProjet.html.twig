@@ -1,0 +1,55 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}
+	Mes projets
+{% endblock %}
+
+
+{% block body %}
+	<h1>Liste des projets</h1>
+	{# Tableau des projets #}
+	<table class="table table-hover table-sm align-middle">
+		<thead>
+			<tr>
+
+				<th>Img</th>
+				<th>Titre</th>
+				<th>Description</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for projet in projets %}
+				<tr>
+
+					<td class="text-start">
+						<img src="{{ asset('img/projet/' ~ projet.img) }}" alt="image du projet {{ projet.titre }}" class="pe-3">
+
+					</td>
+					<td>
+						{{ projet.titre }}
+					</td>
+					<td>{{ projet.description }}</td>
+					<td>
+						<a href="{{ path('projet_update', {'id': projet.id}) }}" class="me-3">
+							<i class="bi bi-pencil-square text-primary"></i>
+						</a>
+						<a href="{{ path('projet_delete', {'id': projet.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')">
+							<i class="bi bi-trash3 text-danger"></i>
+						</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="2">
+						Aucun projet trouvée
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<div class="text-end mt-4">
+		<a href="{{ path('projet_create') }}" class="btn btn-success">Ajouter un projet</a>
+
+	</div>
+{% endblock %}
